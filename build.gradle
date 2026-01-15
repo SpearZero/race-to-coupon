@@ -1,3 +1,6 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
     id 'java'
     id 'org.springframework.boot' version '3.5.3'
@@ -23,10 +26,10 @@ kotlin {
 }
 
 // Kotlin compile options: target Java 21 bytecode and strict JSR-305 nullability
-tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
-    kotlinOptions {
-        jvmTarget = "21"
-        freeCompilerArgs += ['-Xjsr305=strict']
+tasks.withType(KotlinCompile).configureEach {
+    compilerOptions {
+        jvmTarget.set(JvmTarget.JVM_21)
+        freeCompilerArgs.add("-Xjsr305=strict")
     }
 }
 
