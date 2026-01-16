@@ -1,18 +1,15 @@
 package com.rtc.app.coupon.entity;
 
-import com.rtc.app.auth.type.UserType;
 import com.rtc.app.common.entity.BaseTimeEntity;
 import com.rtc.app.coupon.type.CouponStatus;
 import com.rtc.app.coupon.type.CouponSubType;
 import com.rtc.app.coupon.type.CouponType;
-import com.rtc.app.coupon.type.DiscountType;
 import com.rtc.app.auth.entity.User;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import java.time.LocalDateTime;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
