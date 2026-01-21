@@ -8,5 +8,4 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserCouponService {
     private final CouponIssueRepository repository;
-
 }

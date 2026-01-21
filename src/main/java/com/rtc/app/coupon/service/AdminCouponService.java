@@ -36,17 +36,8 @@ public class AdminCouponService {
         String couponCode = couponCodeGenerator.generateCouponCode();
 
         CouponInfo couponInfo = CouponInfo.create(couponCode, command.getTitle(), command.getDescription(), command.getType(), command.getSubType(),
-                DiscountPolicy.create(
-                        command.getDiscountType(),
-                        command.getDiscountValue(),
-                        command.getMinApplyAmount(),
-                        command.getMaxApplyAmount()
-                ),
-                AvailablePeriod.create(
-                        command.getDownloadStart(),
-                        command.getDownloadEnd(),
-                        command.getValidateDays()
-                ),
+                new DiscountPolicy(command.getDiscountType(), command.getDiscountValue(), command.getMinApplyAmount(), command.getMaxApplyAmount()),
+                new AvailablePeriod(command.getDownloadStart(), command.getDownloadEnd(), command.getValidateDays()),
                 command.getTotalQuantity(), user);
 
         CouponInfo savedCoupon = repository.save(couponInfo);
