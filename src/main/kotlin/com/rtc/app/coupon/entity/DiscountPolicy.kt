@@ -1,6 +1,5 @@
 package com.rtc.app.coupon.entity
 
-import com.rtc.app.coupon.type.DiscountType
 import jakarta.persistence.Column
 import jakarta.persistence.Embeddable
 import jakarta.persistence.EnumType

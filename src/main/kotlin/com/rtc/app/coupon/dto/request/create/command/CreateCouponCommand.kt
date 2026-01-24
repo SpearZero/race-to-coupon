@@ -3,7 +3,7 @@ package com.rtc.app.coupon.dto.request.create.command
 import com.rtc.app.coupon.dto.request.create.CreateCouponRequest
 import com.rtc.app.coupon.type.CouponSubType
 import com.rtc.app.coupon.type.CouponType
-import com.rtc.app.coupon.type.DiscountType
+import com.rtc.app.coupon.entity.DiscountType
 import java.time.LocalDateTime
 
 class CreateCouponCommand private constructor(
