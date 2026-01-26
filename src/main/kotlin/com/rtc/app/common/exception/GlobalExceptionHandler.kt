@@ -22,18 +22,15 @@ class GlobalExceptionHandler {
     @ExceptionHandler(MethodArgumentNotValidException::class)
     fun handleMethodArgumentNotValidException(
         exception: MethodArgumentNotValidException,
-    ): ResponseEntity<ApiResponse<Map<String, String>>> {
+    ): ResponseEntity<ApiResponse<Map<String, String?>>> {
         val errors = HashMap<String, String?>()
 
         for (fieldError in exception.bindingResult.fieldErrors) {
             errors[fieldError.field] = fieldError.defaultMessage
         }
 
-        @Suppress("UNCHECKED_CAST")
-        val payload = errors as Map<String, String>
-
         return ResponseEntity(
-            ApiResponse.error(ApiCommonResponseCode.INVALID_PARAMETERS, payload),
+            ApiResponse.error(ApiCommonResponseCode.INVALID_PARAMETERS, errors),
             HttpStatus.BAD_REQUEST,
         )
     }

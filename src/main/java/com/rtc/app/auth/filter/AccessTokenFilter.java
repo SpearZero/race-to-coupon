@@ -36,7 +36,7 @@ public class AccessTokenFilter extends OncePerRequestFilter {
 
     private final ObjectMapper objectMapper;
     private final JwtService jwtService;
-    private final List<String> WHITELIST = List.of("/auth/login", "/sample");
+    private final List<String> WHITELIST = List.of("/auth/login", "/auth/signup", "/sample");
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
