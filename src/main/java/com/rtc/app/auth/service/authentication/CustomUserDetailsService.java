@@ -1,8 +1,8 @@
 package com.rtc.app.auth.service.authentication;
 
+import com.rtc.app.auth.dto.internal.CustomUserDetails;
 import com.rtc.app.auth.entity.User;
 import com.rtc.app.auth.service.UserReadService;
-import com.rtc.app.auth.dto.internal.CustomUserDetails;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

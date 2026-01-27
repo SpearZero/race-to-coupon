@@ -47,7 +47,7 @@ class AccessTokenFilter(
             val authorities: List<GrantedAuthority> =
                 listOf(SimpleGrantedAuthority(userInfo.type))
             val userDetails: UserDetails =
-                CustomUserDetails(userInfo.id, userInfo.email, null, authorities)
+                CustomUserDetails(userInfo.id, userInfo.email, null, authorities.toMutableList())
 
             val authentication =
                 UsernamePasswordAuthenticationToken(userDetails, null, authorities)
