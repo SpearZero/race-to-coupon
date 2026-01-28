@@ -16,7 +16,8 @@ public class UserReadService {
 
     private final UserRepository userRepository;
 
+    // TODO: Optional.ofNullable 추후 제거
     public Optional<User> findByEmail(String email) {
-        return userRepository.findByEmail(email);
+        return Optional.ofNullable(userRepository.findByEmail(email));
     }
 }
