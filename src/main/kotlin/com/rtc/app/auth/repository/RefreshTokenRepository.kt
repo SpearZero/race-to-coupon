@@ -11,12 +11,12 @@ class RefreshTokenRepository(
 ) {
     private val refreshTokenPrefix = "refreshToken:"
 
-    fun save(refreshToken: String, userId: Long, ttl: Duration) {
+    fun save(refreshToken: String, userId: Long?, ttl: Duration) {
         val bucket: RBucket<String> = client.getBucket(refreshTokenPrefix + userId)
         bucket.set(refreshToken, ttl)
     }
 
-    fun delete(userId: Long) {
+    fun delete(userId: Long?) {
         val bucket: RBucket<String> = client.getBucket(refreshTokenPrefix + userId)
         bucket.delete()
     }
