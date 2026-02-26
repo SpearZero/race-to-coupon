@@ -6,6 +6,7 @@ enum class ApiCouponResponseCode(
     override val code: Int,
     override val message: String,
 ) : ResponseCode {
+    COUPON_OK(2000000, "COUPON_OK"),
     COUPON_CREATED_SUCCESS(20020000, "COUPON_CREATED_SUCCESS"),
     COUPON_NOT_FOUND(40020000, "COUPON_NOT_FOUND"),
     COUPON_CODE_DUPLICATE_EXCEPTION(50020000, "COUPON_CODE_DUPLICATE_EXCEPTION");

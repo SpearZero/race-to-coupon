@@ -37,6 +37,7 @@ class SecurityConfig(
                 auth
                     .requestMatchers("/auth/login", "/auth/signup", "/sample").permitAll()
                     .requestMatchers(HttpMethod.POST, "/coupons").hasRole("ADMIN")
+                    .requestMatchers(HttpMethod.GET, "/coupons").hasRole("ADMIN")
                     .requestMatchers(HttpMethod.DELETE, "/coupons/**").hasRole("ADMIN")
                     .anyRequest().authenticated()
             }

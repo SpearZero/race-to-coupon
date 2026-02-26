@@ -3,6 +3,7 @@
 import com.rtc.app.auth.entity.User
 import com.rtc.app.auth.service.query.CouponUserReadService
 import com.rtc.app.coupon.dto.request.create.command.CreateCouponCommand
+import com.rtc.app.coupon.dto.response.list.CouponSummary
 import com.rtc.app.coupon.entity.AvailablePeriod
 import com.rtc.app.coupon.entity.CouponInfo
 import com.rtc.app.coupon.entity.DiscountPolicy
@@ -10,6 +11,8 @@ import com.rtc.app.coupon.exception.CouponCodeDuplicateException
 import com.rtc.app.coupon.exception.CouponNotFoundException
 import com.rtc.app.coupon.repository.CouponInfoRepository
 import jakarta.transaction.Transactional
+import org.springframework.data.domain.Pageable
+import com.rtc.app.common.response.PagedResponse
 import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.retry.annotation.Backoff
 import org.springframework.retry.annotation.Recover
@@ -70,5 +73,27 @@ class AdminCouponService(
             .orElseThrow { CouponNotFoundException("쿠폰 정보를 찾을 수 없습니다.") }
 
         coupon.deleteCoupon(user)
+    }
+
+    fun listCoupons(pageable: Pageable): PagedResponse<CouponSummary> {
+        val page = repository.findAll(pageable)
+        val items = page.content.map { info ->
+            CouponSummary(
+                id = checkNotNull(info.id),
+                name = info.title,
+                status = info.status,
+                downloadStartAt = info.availablePeriod.downloadStart,
+                downloadEndAt = info.availablePeriod.downloadEnd,
+            )
+        }
+
+        return PagedResponse(
+            items = items,
+            page = page.number,
+            size = page.size,
+            totalElements = page.totalElements,
+            totalPages = page.totalPages,
+            hasNext = page.hasNext()
+        )
     }
 }
